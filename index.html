@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Unstable Mable TV</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="description">
+<h1>Unstable Mable TV!</h1>
+<p>Unstable Mable is a Western Box Turtle.</p>
+</div>
+
+<div id="container">
+	<div id="webcam">
+	<img src="images/mable.jpg" width="640" height="480">
+	</div>
+<div id="container">
+<script>
+$(document).ready(function() {
+ 
+    //Speed of the slideshow
+    var speed = 5000;
+ //Assign a timer, so it will run periodically
+    var run = setInterval('update', speed);  
+     
+    //Pause the slidershow with clearInterval
+    $('#btn-pause').click(function () {
+        clearInterval(run);
+        return false;
+    });
+ 
+    //Continue the slideshow with setInterval
+    $('#btn-play').click(function () {
+        run = setInterval('update', speed);  
+        return false;
+    });
+     
+    //Next Slide by calling the function
+    $('#btn-next').click(function () {
+        newsslider(0);  
+        return false;
+    }); 
+ 
+    //Previous slide by passing prev=1
+    $('#btn-prev').click(function () {
+        newsslider(1);  
+        return false;
+    }); 
+     
+    //Mouse over, pause it, on mouse out, resume the slider show
+    $('#webcam').hover(
+     
+        function() {
+            clearInterval(run);
+        }, 
+        function() {
+            run = setInterval('update', speed);  
+        }
+    );  
+     
+});
+ 
+function update() {
+	var slug = $.now();
+	$("#webcam").insertAfter("<img src\"images/mable.jpg?" + slug + \">");
+}
+	
+</script>
+</body>
+</html>
